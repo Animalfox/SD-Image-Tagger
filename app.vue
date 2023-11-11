@@ -17,7 +17,7 @@ const previewSizes = 64;
   </template>
 </template>
 
-<style>
+<style lang="scss">
 div {
   display: flex;
   flex-wrap: wrap;
