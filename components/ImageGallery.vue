@@ -30,6 +30,9 @@ const previewSizes = 64;
 </template>
 
 <style scoped lang="scss">
+section {
+  flex-direction: column;
+}
 div {
   display: flex;
   flex-wrap: wrap;

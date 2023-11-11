@@ -1,0 +1,50 @@
+@mixin reset {
+  * {
+    margin: 0;
+  }
+  body,
+  div,
+  main,
+  section,
+  address,
+  article,
+  aside,
+  blockquote,
+  canvas,
+  dd,
+  div,
+  dl,
+  dt,
+  fieldset,
+  figcaption,
+  figure,
+  footer,
+  form,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  hr,
+  li,
+  main,
+  nav,
+  noscript,
+  ol,
+  p,
+  pre,
+  section,
+  table,
+  tfoot,
+  ul,
+  video {
+    display: flex;
+    gap: 10px;
+  }
+  body {
+    padding: 10px;
+    flex-direction: column;
+  }
+}

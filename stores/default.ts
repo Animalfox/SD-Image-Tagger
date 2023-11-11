@@ -6,7 +6,10 @@ export interface IImage {
 
 export const useStore = defineStore("default", () => {
   const images: Array<IImage> = getImages();
-  return { images };
+  const getRandomImage = () => {
+    return images[Math.floor(Math.random() * images.length)];
+  };
+  return { images, getRandomImage };
 });
 
 function getImages(): Array<IImage> {
