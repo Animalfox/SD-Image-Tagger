@@ -17,6 +17,7 @@
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/google-fonts": "^3.0.2",
     "@typescript-eslint/parser": "^6.10.0",
     "@vue/language-plugin-pug": "^1.8.22",
     "eslint": "^8.53.0",
