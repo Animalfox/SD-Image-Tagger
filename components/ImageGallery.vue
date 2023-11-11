@@ -35,4 +35,8 @@ div {
   flex-wrap: wrap;
   gap: 10px;
 }
+img {
+  border-radius: 10px;
+  border: 1px solid rgb(216, 223, 226);
+}
 </style>
