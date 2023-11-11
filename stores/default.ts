@@ -16,13 +16,13 @@ function getImages(): Array<IImage> {
   interface globItem {
     default: string;
   }
-  const glob = import.meta.glob("@/public/images/*.png", {
+  const glob = import.meta.glob("@/assets/images/*.png", {
     eager: true,
   }) as unknown as Array<globItem>;
   const images: Array<IImage> = [];
   Object.values(glob).forEach((g: globItem) => {
     const image: IImage = {
-      path: g.default.replace("/_nuxt/public/", ""),
+      path: g.default.replace("/_nuxt/assets/images", ""),
     };
     images.push(image);
   });

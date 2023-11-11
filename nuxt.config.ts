@@ -9,4 +9,7 @@ export default defineNuxtConfig({
       { families: { Montserrat: [400, 800] }, download: true },
     ],
   ],
+  image: {
+    dir: 'assets/images',
+  }
 });
