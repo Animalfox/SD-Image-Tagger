@@ -2,7 +2,7 @@
 import { useStore } from "@/stores/default";
 
 const store = useStore();
-const previewSizes = 64;
+const previewSizes = 62;
 </script>
 
 <template>
