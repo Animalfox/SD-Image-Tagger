@@ -12,9 +12,13 @@
 @import "@/scss";
 @include reset;
 
+body {
+  align-items: center;
+}
 main {
   display: flex;
   flex-direction: column;
+  max-width: 1520px;
   gap: 10px;
 }
 * {
