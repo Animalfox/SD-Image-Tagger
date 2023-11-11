@@ -1,5 +1,8 @@
+<script setup lang="ts">
+import { useStore } from '~/stores/default'
+const store = useStore()
+</script>
+
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <pre>{{ store.data }}</pre>
 </template>
