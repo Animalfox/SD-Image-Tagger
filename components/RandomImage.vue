@@ -31,13 +31,17 @@ section {
 }
 img {
   border-radius: 10px;
+  border: 1px solid rgb(216, 223, 226);
 }
 button {
-  height: 50px;
+  height: 60px;
   border: 0;
   border-radius: 10px;
-  background-color: #114677;
+  background-color: #195fa0;
   color: #fff;
   font-size: 16pt;
+  &:hover {
+    background-color: #144a7c;
+  }
 }
 </style>
