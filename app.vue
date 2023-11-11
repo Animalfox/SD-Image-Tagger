@@ -9,7 +9,7 @@ const previewSizes = 64;
   <template v-if="store.images.length > 0">
     <p>Your <b>./assets/images</b> folder contains:</p>
     <div>
-      <NuxtImg v-for="image in store.images" :src="image" :width="previewSizes" :height="previewSizes" />
+      <NuxtImg v-for="image in store.images" :src="image.path" :width="previewSizes" :height="previewSizes" />
     </div>
   </template>
   <template v-else>
