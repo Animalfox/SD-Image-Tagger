@@ -2,7 +2,6 @@
   <main>
     <h1>SD Image Tagger</h1>
     <div class="row">
-      <ImageGallery />
       <RandomImage />
     </div>
   </main>
