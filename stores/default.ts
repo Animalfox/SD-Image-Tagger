@@ -21,7 +21,15 @@ export const useStore = defineStore("default", () => {
     selected.value = randomSelected;
   };
 
-  return { isLoading, selected, images, selectRandomImage };
+  const selectImageBySrc = (src: string) => {
+    selected.value = images.value.indexOf(
+      images.value.find((el) => {
+        return el.src === src;
+      }),
+    );
+  };
+
+  return { isLoading, selected, images, selectRandomImage, selectImageBySrc };
 });
 
 async function getImages(): Promise<IImage[]> {

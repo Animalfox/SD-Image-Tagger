@@ -17,6 +17,7 @@ const previewSizes = 34;
           :width="previewSizes"
           :height="previewSizes"
           :class="{ active: image.src == store.images[store.selected].src }"
+          @click="store.selectImageBySrc(image.src)"
         />
       </div>
     </template>
@@ -42,6 +43,7 @@ img {
   border-radius: 10px;
   border: 1px solid rgb(216, 223, 226);
   opacity: 0.5;
+  cursor: pointer;
   &.active {
     opacity: 1;
     border: 1px solid rgb(89, 205, 255);
