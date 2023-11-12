@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = await useFetch("/api/v1/file/list");
+const { data } = await useFetch("/api/v1/image/list");
 </script>
 <template>
   <main>
