@@ -4,7 +4,7 @@ const { data } = await useFetch("/api/file/list");
 <template>
   <main>
     <h1>SD Image Tagger</h1>
-    {{ data }}
+    <pre>{{ data }}</pre>
     <div class="row">
       <RandomImage />
     </div>

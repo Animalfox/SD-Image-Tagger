@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import uuid from 'uuid';
 
 export default defineEventHandler((event) => {
   // Detect file action from event
@@ -11,7 +12,6 @@ export default defineEventHandler((event) => {
   switch (action) {
     case "list": {
       return getAllFiles();
-      break;
     }
     default: {
       return {
@@ -27,7 +27,10 @@ export default defineEventHandler((event) => {
   function getAllFiles() {
     const files: Array<string> = [];
     fs.readdirSync(imageFolder).forEach((file) => {
-      files.push(file);
+      files.push({
+        file: file,
+        uuid: uuid.v4()
+      });
     });
     return files;
   }
