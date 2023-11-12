@@ -1,13 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import { v4 as uuidv4, validate } from "uuid";
+import { IImage } from "~/types";
 
 export default defineEventHandler((event) => {
   // Detect file action from event
   const action = getRouterParam(event, "action");
 
   // Setup images folder for scanning files
-  const imageFolder = process.cwd() + "\\assets\\images";
+  const imageFolder = process.cwd() + "\\public\\images";
 
   // Define valid image extensions
   // By default SD Works with png only image types, but if you want to improve
@@ -32,7 +33,7 @@ export default defineEventHandler((event) => {
    * @returns all file names array (includes non-image format)
    */
   function getAllFiles() {
-    const files: Array<string> = [];
+    const files: Array<IImage> = [];
     fs.readdirSync(imageFolder).forEach((originalFullName) => {
       // Process only valid (image) extension files
       if (hasValidExtension(originalFullName, validImageExtensions)) {
@@ -44,7 +45,10 @@ export default defineEventHandler((event) => {
         };
         if (original.uuidValid) {
           // It's ok, send file
-          files.push(originalFullName);
+          const image: IImage = {
+            src: "/images/" + originalFullName,
+          };
+          files.push(image);
         } else {
           // Not ok, correct file name then send corrected
           const newUuidFullName = uuidv4() + original.ext;
@@ -53,7 +57,10 @@ export default defineEventHandler((event) => {
             imageFolder + "\\" + newUuidFullName,
             (error) => {
               if (!error) {
-                files.push(newUuidFullName);
+                const image: IImage = {
+                  src: "/images/" + newUuidFullName,
+                };
+                files.push(image);
               }
             },
           );

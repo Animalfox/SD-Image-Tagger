@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { useStore } from "@/stores/default";
-
 const store = useStore();
-const previewSizes = 62;
+const previewSizes = 34;
 </script>
 
 <template>
   <section>
     <h2>Image Gallery</h2>
     <template v-if="store.images.length > 0">
-      <p>Your <b>./assets/images</b> folder contains:</p>
+      <p>Your <b>./public/images</b> folder contains:</p>
       <div>
-        <NuxtImg
+        <img
           v-for="image in store.images"
-          :key="image.path"
-          :src="image.path"
+          :key="image.src"
+          :src="image.src"
           :width="previewSizes"
           :height="previewSizes"
+          :class="{ active: image.src == store.images[store.selected].src }"
         />
       </div>
     </template>
-    <template v-if="store.images.length == 0">
+    <template v-else>
       <p>
         Your <b>./assets/images</b> folder is empty. Please add your images into
         this folder.
@@ -41,5 +41,10 @@ div {
 img {
   border-radius: 10px;
   border: 1px solid rgb(216, 223, 226);
+  opacity: 0.5;
+  &.active {
+    opacity: 1;
+    border: 1px solid rgb(89, 205, 255);
+  }
 }
 </style>

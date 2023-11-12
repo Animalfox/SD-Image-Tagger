@@ -43,7 +43,9 @@
     display: flex;
     gap: 10px;
   }
-  body {
+  body,
+  pre,
+  section {
     padding: 10px;
     flex-direction: column;
   }

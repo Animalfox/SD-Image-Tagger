@@ -1,12 +1,20 @@
 <script setup lang="ts">
-const { data } = await useFetch("/api/v1/image/list");
+import { useStore } from "@/stores/default";
+const store = useStore();
 </script>
+
 <template>
   <main>
     <h1>SD Image Tagger</h1>
-    <pre>{{ data.splice(0,3) }}</pre>
     <div class="row">
-      <RandomImage />
+      <template v-if="!store.isLoading">
+        <ImageGallery />
+        <RandomImage />
+        <StoreDebug />
+      </template>
+      <template v-else>
+        <p>Image Loading...</p>
+      </template>
     </div>
   </main>
 </template>

@@ -1,30 +1,39 @@
 import { defineStore } from "pinia";
-
-export interface IImage {
-  path: string;
-}
+import { IImage } from "@/types";
 
 export const useStore = defineStore("default", () => {
-  const images: Array<IImage> = getImages();
-  const getRandomImage = () => {
-    return images[Math.floor(Math.random() * images.length)];
+  const selected = ref<number>(0);
+  const images = ref<Array<IImage>>([]);
+  const isLoading = ref<boolean>(true); // introduce loading state
+
+  const initializeStore = async () => {
+    try {
+      images.value = await getImages();
+    } finally {
+      selectRandomImage();
+      isLoading.value = false; // set loading to false whether successful or not
+    }
   };
-  return { images, getRandomImage };
+  initializeStore();
+
+  const selectRandomImage = () => {
+    const randomSelected = Math.floor(Math.random() * images.value.length);
+    selected.value = randomSelected;
+  };
+
+  return { isLoading, selected, images, selectRandomImage };
 });
 
-function getImages(): Array<IImage> {
-  interface globItem {
-    default: string;
+async function getImages(): Promise<IImage[]> {
+  try {
+    const response = await fetch("http://localhost:3000/api/v1/image/list");
+    if (!response.ok) {
+      throw new Error(`Failed to fetch images. Status: ${response.status}`);
+    }
+
+    const images: Array<IImage> = await response.json();
+    return images;
+  } catch (error) {
+    return [];
   }
-  const glob = import.meta.glob("@/assets/images/*.png", {
-    eager: true,
-  }) as unknown as Array<globItem>;
-  const images: Array<IImage> = [];
-  Object.values(glob).forEach((g: globItem) => {
-    const image: IImage = {
-      path: g.default.replace("/_nuxt/assets/images", ""),
-    };
-    images.push(image);
-  });
-  return images;
 }

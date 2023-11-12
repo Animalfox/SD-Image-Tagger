@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { useStore } from "@/stores/default";
-
 const store = useStore();
-const image = ref({});
-getRandomImage();
-
-function getRandomImage() {
-  image.value = store.getRandomImage();
-}
 </script>
 
 <template>
   <section>
     <h2>Random Image</h2>
     <p>Click the button below the image to roll the next image</p>
-    <NuxtImg :src="image.path" width="512" height="512" />
-    <button @click="getRandomImage()">Next Image</button>
+    <img
+      v-if="store.images[store.selected]"
+      :src="store.images[store.selected].src"
+      width="512"
+      height="512"
+    />
+    <button @click="store.selectRandomImage()">Next Image</button>
   </section>
 </template>
 
