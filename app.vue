@@ -1,6 +1,10 @@
+<script setup lang="ts">
+const { data } = await useFetch("/api/file/list");
+</script>
 <template>
   <main>
     <h1>SD Image Tagger</h1>
+    {{ data }}
     <div class="row">
       <RandomImage />
     </div>
