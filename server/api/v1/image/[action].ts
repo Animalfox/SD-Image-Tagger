@@ -21,6 +21,9 @@ export default defineEventHandler((event) => {
     case "list": {
       return getAllImages();
     }
+    case "tags": {
+      return getAllTags();
+    }
     default: {
       return {
         error: `${action} is not implemented yet`,
@@ -142,5 +145,13 @@ export default defineEventHandler((event) => {
     } catch (error) {
       // console.error("Error saving tags:", error.message);
     }
+  }
+
+  /**
+   * Get all tags from the tags file
+   * @returns array of tags
+   */
+  function getAllTags(): string[] {
+    return loadTags();
   }
 });

@@ -1,19 +1,16 @@
+<script setup lang="ts">
+import { useStore } from "@/stores/default";
+const store = useStore();
+</script>
+
 <template>
   <section>
     <h2>List Of All Tags</h2>
     <p>Look at the all tags used inside your project</p>
     <input type="text" placeholder='Type a new tag and press "Enter" …' />
     <ul>
-      <li>
-        <span>Tag 1</span>
-        <button></button>
-      </li>
-      <li>
-        <span>Tag 2</span>
-        <button></button>
-      </li>
-      <li>
-        <span>Tag 3</span>
+      <li v-for="tag in store.tags" :key="tag">
+        <span>{{ tag }}</span>
         <button></button>
       </li>
     </ul>
