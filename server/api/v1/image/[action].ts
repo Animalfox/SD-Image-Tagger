@@ -42,9 +42,10 @@ export default defineEventHandler((event) => {
         };
         if (original.uuidValid) {
           // It's ok, send file
+          const tags = getTags(original.name);
           const image: IImage = {
             src: "/images/" + originalFullName,
-            tags: [], // Add your logic to extract tags from the file
+            tags,
           };
           images.push(image);
         } else {
@@ -57,7 +58,7 @@ export default defineEventHandler((event) => {
               if (!error) {
                 const image: IImage = {
                   src: "/images/" + newUuidFullName,
-                  tags: [], // Add your logic to extract tags from the file
+                  tags: [],
                 };
                 images.push(image);
               }
@@ -79,5 +80,23 @@ export default defineEventHandler((event) => {
     return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(
       filename,
     );
+  }
+
+  /**
+   * Retrieve tags from txt file if it exists
+   * @param filename base filename without extension
+   * @returns array of tags or empty array if file doesn't exist or is empty
+   */
+  function getTags(filename: string): string[] {
+    const txtFilePath = path.join(imageFolder, filename + ".txt");
+    if (fs.existsSync(txtFilePath)) {
+      // If txt file exists, read and parse tags
+      const tagsContent = fs.readFileSync(txtFilePath, "utf-8");
+      return tagsContent.split(",").map((tag) => tag.trim()).filter(Boolean);
+    } else {
+      // If txt file doesn't exist, create it with an empty array of tags
+      fs.writeFileSync(txtFilePath, "");
+      return [];
+    }
   }
 });
