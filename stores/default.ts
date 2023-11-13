@@ -4,14 +4,16 @@ import { IImage } from "@/types";
 export const useStore = defineStore("default", () => {
   const selected = ref<number>(0);
   const images = ref<Array<IImage>>([]);
-  const isLoading = ref<boolean>(true); // introduce loading state
+  const tags = ref<Array<string>>([]);
+  const isLoading = ref<boolean>(true);
 
   const initializeStore = async () => {
     try {
       images.value = await getImages();
+      tags.value = await getTags();
     } finally {
       selectRandomImage();
-      isLoading.value = false; // set loading to false whether successful or not
+      isLoading.value = false;
     }
   };
   initializeStore();
@@ -29,7 +31,14 @@ export const useStore = defineStore("default", () => {
     );
   };
 
-  return { isLoading, selected, images, selectRandomImage, selectImageBySrc };
+  return {
+    isLoading,
+    selected,
+    images,
+    tags,
+    selectRandomImage,
+    selectImageBySrc,
+  };
 });
 
 async function getImages(): Promise<IImage[]> {
@@ -38,9 +47,21 @@ async function getImages(): Promise<IImage[]> {
     if (!response.ok) {
       throw new Error(`Failed to fetch images. Status: ${response.status}`);
     }
-
     const images: Array<IImage> = await response.json();
     return images;
+  } catch (error) {
+    return [];
+  }
+}
+
+async function getTags(): Promise<string[]> {
+  try {
+    const response = await fetch("http://localhost:3000/api/v1/image/tags");
+    if (!response.ok) {
+      throw new Error(`Failed to fetch tags. Status: ${response.status}`);
+    }
+    const tags: Array<string> = await response.json();
+    return tags;
   } catch (error) {
     return [];
   }

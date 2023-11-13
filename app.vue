@@ -8,9 +8,9 @@ const store = useStore();
     <h1>SD Image Tagger</h1>
     <div class="row">
       <template v-if="!store.isLoading">
-        <ImageGallery />
         <RandomImage />
         <StoreDebug />
+        <ListOfAllTags />
       </template>
       <template v-else>
         <p>Image Loading...</p>
