@@ -11,19 +11,16 @@ export default defineEventHandler((event) => {
   const imageFolder = process.cwd() + "\\public\\images";
 
   // Define valid image extensions
-  // By default SD Works with png only image types, but if you want to improve
-  // image filetypes compatibility you need to add new image extension to this
-  // array and convert image locally to png
   const validImageExtensions = [".png"];
 
   // Send actions to functions
   switch (action) {
     case "list": {
-      return getAllFiles();
+      return getAllImages();
     }
     default: {
       return {
-        error: action + " is not implemented yet",
+        error: `${action} is not implemented yet`,
       };
     }
   }
@@ -32,8 +29,8 @@ export default defineEventHandler((event) => {
    * Scans image folder, then prepare files and return list
    * @returns all file names array (includes non-image format)
    */
-  function getAllFiles() {
-    const files: Array<IImage> = [];
+  function getAllImages(): IImage[] {
+    const images: IImage[] = [];
     fs.readdirSync(imageFolder).forEach((originalFullName) => {
       // Process only valid (image) extension files
       if (hasValidExtension(originalFullName, validImageExtensions)) {
@@ -47,8 +44,9 @@ export default defineEventHandler((event) => {
           // It's ok, send file
           const image: IImage = {
             src: "/images/" + originalFullName,
+            tags: [], // Add your logic to extract tags from the file
           };
-          files.push(image);
+          images.push(image);
         } else {
           // Not ok, correct file name then send corrected
           const newUuidFullName = uuidv4() + original.ext;
@@ -59,15 +57,16 @@ export default defineEventHandler((event) => {
               if (!error) {
                 const image: IImage = {
                   src: "/images/" + newUuidFullName,
+                  tags: [], // Add your logic to extract tags from the file
                 };
-                files.push(image);
+                images.push(image);
               }
             },
           );
         }
       }
     });
-    return files;
+    return images;
   }
 
   /**
@@ -76,7 +75,7 @@ export default defineEventHandler((event) => {
    * @param exts array of allowed extensions
    * @returns state of valid ( true | false )
    */
-  function hasValidExtension(filename, exts) {
+  function hasValidExtension(filename: string, exts: string[]): boolean {
     return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(
       filename,
     );
