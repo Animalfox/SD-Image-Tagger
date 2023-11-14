@@ -3,7 +3,7 @@ import path from "node:path";
 import { v4 as uuidv4, validate } from "uuid";
 import { IImage } from "~/types";
 
-// Путь к файлу с тегами
+// Path to a file with tags
 const tagsFilePath = process.cwd() + "\\database\\tags.json";
 
 export default defineEventHandler((event) => {
@@ -57,7 +57,7 @@ export default defineEventHandler((event) => {
             tags,
           });
 
-          // Добавляем теги изображения в массив existingTags
+          // Add image tags to the ExistingTags array
           tags.forEach((tag) => {
             if (!existingTags.includes(tag)) {
               existingTags.push(tag);
@@ -82,7 +82,7 @@ export default defineEventHandler((event) => {
       }
     });
 
-    // Сортируем и сохраняем обновленные теги в ./database/tags.json
+    // Sort and save updated tags in ./database/tags.json
     existingTags.sort();
     saveTags(existingTags);
 
