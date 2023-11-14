@@ -20,16 +20,16 @@
     "@nuxtjs/google-fonts": "^3.0.2",
     "@typescript-eslint/parser": "^6.10.0",
     "@vue/language-plugin-pug": "^1.8.22",
-    "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "eslint": "^8.53.0",
     "nuxt": "^3.8.1",
     "prettier": "^3.0.3",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue": "^3.3.8"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
