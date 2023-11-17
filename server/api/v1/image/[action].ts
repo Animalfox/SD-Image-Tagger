@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { v4 as uuidv4, validate } from "uuid";
+import { useValidExtension } from "~/composables/useValidExtension";
 import { IImage } from "~/types";
 
 // Path to a file with tags
@@ -42,7 +43,7 @@ export default defineEventHandler((event) => {
     const images: IImage[] = [];
     fs.readdirSync(imageFolder).forEach((originalFullName) => {
       // Process only valid (image) extension files
-      if (hasValidExtension(originalFullName, validImageExtensions)) {
+      if (useValidExtension(originalFullName, validImageExtensions)) {
         // Describe original file
         const original = {
           name: path.parse(originalFullName).name,
@@ -87,18 +88,6 @@ export default defineEventHandler((event) => {
     saveTags(existingTags);
 
     return images;
-  }
-
-  /**
-   * Function for validating file extension
-   * @param filename for validate
-   * @param exts array of allowed extensions
-   * @returns state of valid ( true | false )
-   */
-  function hasValidExtension(filename: string, exts: string[]): boolean {
-    return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(
-      filename,
-    );
   }
 
   /**
