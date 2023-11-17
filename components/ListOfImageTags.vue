@@ -5,11 +5,11 @@ const store = useStore();
 
 <template>
   <section>
-    <h2>List Of All Tags</h2>
-    <p>Look at the all tags</p>
+    <h2>List Of Image Tags</h2>
+    <p>Look at this image tags</p>
     <input type="text" placeholder='Type a new tag and press "Enter" …' />
     <ul>
-      <li v-for="tag in store.tags" :key="tag">
+      <li v-for="tag in store.images[store.selected].tags" :key="tag">
         <span>{{ tag }}</span>
         <button></button>
       </li>

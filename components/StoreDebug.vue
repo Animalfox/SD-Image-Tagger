@@ -6,14 +6,19 @@ const store = useStore();
 <template>
   <section>
     <h2>Store Debug</h2>
-    <p>You can see current state of the store at below:</p>
+    <p>Use this for check actual state:</p>
     <pre>{{ store }}</pre>
   </section>
 </template>
 
 <style scoped lang="scss">
+section {
+  opacity: 0.25;
+  width: 300px;
+  margin-left: -300px;
+}
 pre {
-  max-height: 565px;
+  max-height: 614px;
   overflow: auto;
 }
 </style>

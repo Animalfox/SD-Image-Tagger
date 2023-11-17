@@ -4,19 +4,22 @@ const store = useStore();
 </script>
 
 <template>
-  <main>
-    <h1>SD Image Tagger</h1>
-    <div class="row">
-      <template v-if="!store.isLoading">
-        <RandomImage />
-        <StoreDebug />
-        <ListOfAllTags />
-      </template>
-      <template v-else>
-        <p>Image Loading...</p>
-      </template>
-    </div>
-  </main>
+  <div class="row">
+    <StoreDebug />
+    <main>
+      <h1>SD Image Tagger</h1>
+      <div class="row">
+        <template v-if="!store.isLoading">
+          <RandomImage />
+          <ListOfImageTags />
+          <ListOfAllTags />
+        </template>
+        <template v-else>
+          <p>Image Loading...</p>
+        </template>
+      </div>
+    </main>
+  </div>
 </template>
 
 <style lang="scss">
