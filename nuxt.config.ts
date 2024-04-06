@@ -13,4 +13,13 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		['@nuxtjs/google-fonts', { families: { Nunito: [400, 800] }, download: true }],
 	],
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					additionalData: '@use "@/mixins" as *;',
+				},
+			},
+		},
+	},
 });

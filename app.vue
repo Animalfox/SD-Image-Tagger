@@ -23,9 +23,7 @@ const store = useStore();
 </template>
 
 <style lang="scss">
-@import "@/scss";
-@include reset;
-
+@include useReset;
 body {
   align-items: center;
 }

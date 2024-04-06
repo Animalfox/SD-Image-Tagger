@@ -1,0 +1,28 @@
+/// Встраивает наш собственный CSS-reset в место своего вызова, используется с ключевым словом @include
+///
+/// Достаточно всего одного встраивания в корневой файл `/app.vue`, для того что бы сброс был применен по всему сайту
+///
+/// Вы можете отредактировать CSS-reset, используемый на сайте, прямо внутри кода данного миксина, расположенного
+/// по адресу `/mixins/composables/_useReset.scss`
+///
+/// @access public
+/// @example scss
+/// 	@include useReset;
+/// @author Animalfox
+@mixin useReset() {
+	* {
+		font-family: 'Gilroy';
+		cursor: default;
+	}
+	a,
+	button {
+		cursor: pointer;
+		* {
+			cursor: pointer;
+		}
+	}
+	body {
+		margin: 0;
+		padding: 0;
+	}
+}

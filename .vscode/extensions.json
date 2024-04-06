@@ -1,0 +1,13 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"divlook.color-naming",
+		"editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+		"foxundermoon.shell-format",
+		"irongeek.vscode-env",
+		"ms-azuretools.vscode-docker",
+		"nuxtr.nuxtr-vscode",
+		"vue.volar"
+	]
+}

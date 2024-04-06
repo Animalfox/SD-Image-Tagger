@@ -1,0 +1,121 @@
+@use 'sass:map';
+$colors: (
+	primary: #762fed,
+	secondary: #b9ff47,
+	teriary: unset,
+	alternate: unset,
+	primary-background: #20242c,
+	secondary-background: unset,
+	primary-text: #fff,
+	secondary-text: #101113,
+	accent1: #2457b6,
+	accent2: unset,
+	accent3: unset,
+	accent4: unset,
+	success: unset,
+	warning: unset,
+	error: unset,
+	info: unset,
+);
+
+$lighten: 6; // Процент высветления цветов (hover-эффект)
+$darken: 6; // Процент затемнения цветов (press-эффект)
+
+// Создает светлый и темный оттенки из указанного цвета
+@function generateShadesFromColorValue($color) {
+	@return (light: lighten($color, $lighten), dark: darken($color, $darken));
+}
+
+@function generateShades($colorName) {
+	$colorValue: map-get($colors, $colorName);
+	@if not $colorValue {
+		@error "Цвет с именем '#{$colorName}' не обнаружен в карте цветов.";
+	}
+	$defaultColor: (
+		default: $colorValue,
+	);
+	$shadeColors: generateShadesFromColorValue($colorValue);
+	@return map.merge($defaultColor, $shadeColors);
+	//@return (default: $colorValue, light: lighten($colorValue, $lighten), dark: darken($colorValue, $darken));
+}
+
+@function generateTransparentColors($colorName) {
+	$default: map-get($colors, $colorName);
+	$transparent-colors: ();
+	@for $i from 1 through 9 {
+		$alpha: 10 * $i;
+		$transparent-color: rgba($default, 1 - calc($alpha / 100));
+		$shades: generateShadesFromColorValue($transparent-color); // Генерация оттенков для прозрачного цвета
+		$newColor: (
+			default: $transparent-color,
+			light: map.get($shades, light),
+			dark: map.get($shades, dark),
+		);
+		$key: #{$colorName}-#{$i};
+		$transparent-colors: map.merge(
+			($transparent-colors),
+			(
+				$key: $newColor,
+			)
+		);
+	}
+	@return $transparent-colors;
+}
+
+// Функция для генерации оттенков и прозрачных цветов для каждого цвета
+$updated-colors: $colors; // Создаем новую переменную для хранения обновленной карты цветов
+@each $colorName, $value in $colors {
+	$colorValue: map-get($colors, $colorName);
+	@if $colorValue != 'unset' {
+		$shades: generateShades($colorName);
+		$transparent-colors: generateTransparentColors($colorName);
+		$color_data: map.merge(
+			(
+				$colorName: $shades,
+			),
+			$transparent-colors
+		);
+		// Обновляем карту цветов, добавляя новую карту для текущего цвета
+		$updated-colors: map.merge($updated-colors, $color_data);
+	}
+}
+$colors: $updated-colors; // Присваиваем обновленную карту переменной $colors
+
+/// Функция для получения цветов
+///
+/// Позволяет вам использовать цвет из генерированного кластера цветов.
+/// Кластеризация необходима для удовлетворения требований по производительности и объему CSS кода в WCAG 2.1.
+/// Она уменьшает количество используемых цветов, уменьшая тем самым объем CSS-кода и увеличивая производительность на
+/// слабых устройствах.
+///
+/// Список цветов хранится в `/mixins/composables/getColor/_colors.scss`
+///
+/// Вы можете добавлять новые цвета в список и они станут доступны при использовании этой функции.
+///
+/// Функция автоматически создает прозрачные версии ваших цветов и их оттенки, так же, она хранит их в кластере где они
+/// не занимают места в конечном CSS-коде и конечный код увеличится лишь на 1 цвет при вызове конкретного цвета
+/// функцией. Для получения прозрачного цвета, добавьте к названию цвета цифровой суффикс от `-1` до `-9`, из цвета
+/// будет вычтен указанный вами уровень прозрачности.
+///
+/// @param {string} $colorName - Имя цвета из файла с переменными цветов, можно указать суффикс прозрачности
+/// @param {string} $colorShade [default] - Оттенок цвета, опциональный параметр, можно указать `light` или `dark`
+/// @author Animalfox
+/// @access public
+/// @example scss
+/// 	.example1 {
+/// 		color: getColor(primary-text); // #fff
+/// 	}
+/// 	.example2 {
+/// 		color: getColor(primary-text, dark); // #f0f0f0
+/// 	}
+/// 	.example3 {
+/// 		color: getColor(primary-text-4, dark); // rgba(240, 240, 240, 0.6)
+/// 	}
+/// @return {string} Возвращает строку с цветом или значение unset, если цвет не найден
+@function getColor($colorName, $colorShade: default) {
+	$color: map.get($colors, $colorName);
+	@if not $color {
+		@return 'unset';
+	}
+	@return map.get($color, $colorShade);
+}

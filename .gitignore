@@ -11,7 +11,7 @@ node_modules
 
 # Logs
 logs
-*.log
+*.log*
 
 # Misc
 .DS_Store
@@ -23,5 +23,5 @@ logs
 .env.*
 !.env.example
 
-# Images Folder
-images
+# Docs
+docs

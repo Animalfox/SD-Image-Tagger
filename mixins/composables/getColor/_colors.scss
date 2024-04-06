@@ -1,0 +1,22 @@
+@use 'sass:map';
+/// Набор цветов, используемый на сайте
+///
+/// Ознакомьтесь с блоком **Used by** ниже, для того что бы получить примеры использования
+$colors: (
+	primary: #762fed,
+	secondary: #b9ff47,
+	teriary: unset,
+	alternate: unset,
+	primary-background: #20242c,
+	secondary-background: unset,
+	primary-text: #fff,
+	secondary-text: #101113,
+	accent1: #2457b6,
+	accent2: unset,
+	accent3: unset,
+	accent4: unset,
+	success: unset,
+	warning: unset,
+	error: unset,
+	info: unset,
+);
