@@ -36,7 +36,7 @@ main {
   gap: 10px;
 }
 * {
-  font-family: Montserrat;
+  font-family: Nunito;
 }
 .row {
   display: flex;

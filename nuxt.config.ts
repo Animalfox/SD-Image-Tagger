@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     [
       "@nuxtjs/google-fonts",
-      { families: { Montserrat: [400, 800] }, download: true },
+      { families: { Nunito: [400, 800] }, download: true },
     ],
   ],
   image: {
