@@ -25,3 +25,6 @@ logs
 
 # Docs
 docs
+
+# Local user JSON for CSpell
+cspell.json
