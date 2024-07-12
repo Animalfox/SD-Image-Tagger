@@ -1,5 +1,4 @@
 import Image from "../../domain/entities/Image";
-import { Path } from "../../domain/entities/Path";
 import Dataset from "../../domain/repositories/Dataset";
 import fs from "node:fs";
 
@@ -10,19 +9,18 @@ export const useValidExtension = (filename: string, exts: string[]) => {
   };
 
 export default class FolderDataset implements Dataset {
-    private path: Path;
-    ["constructor"](path: Path): boolean {
+    private path: string;
+    constructor(path: string) {
         this.path = path;
-        return this.isPathCorrect(path);
     }
     async GetImageById(): Promise<Array<Image>> {
         const images: Array<Image> = [];
-        const isPng = (path: Path) => {
+        const isPng = (path: string) => {
             return new RegExp("(" + "png".replace(/\./g, "\\.") + ")$").test(path);
         }
         const pngArr = fs.readdirSync(this.path).filter(elem => isPng(elem));
         /** Because image interface is empty, nothing to add into images: empty elements */
-        pngArr.forEach(i => images.push(new Image()));
+        pngArr.forEach(p => images.push(new Image(p)));
         return images;
     }
     CreateImage(): Promise<boolean> {
@@ -34,7 +32,7 @@ export default class FolderDataset implements Dataset {
     DeleteImage(): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
-    private isPathCorrect(path: Path): boolean {
+    private isPathCorrect(path: string): boolean {
         return fs.lstatSync(path).isDirectory();
     }
 }

@@ -1,9 +1,7 @@
-import Image from "../entities/Image";
-import { Path } from "../entities/Path";
+import iImage from "../interfaces/iImage";
 
 export default interface Dataset {
-  constructor(path: Path): boolean;
-  GetImageById(): Promise<Array<Image>>;
+  GetImageById(): Promise<Array<iImage>>;
   CreateImage(): Promise<boolean>;
   UpdateImage(): Promise<boolean>;
   DeleteImage(): Promise<boolean>;
