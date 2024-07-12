@@ -1,4 +1,7 @@
 {
-    "private": true,
-    "name": "sd-image-tagger"
+  "private": true,
+  "name": "sd-image-tagger",
+  "workspaces": [
+    "packages/*"
+  ]
 }
