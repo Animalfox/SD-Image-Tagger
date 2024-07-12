@@ -1,0 +1,52 @@
+{
+	"name": "nuxt-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"docs": "rm -rf docs/** && mkdir -p docs && sassdoc mixins",
+		"generate": "nuxt generate",
+		"lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
+		"lint:prettier": "prettier --check .",
+		"lint": "pnpm lint:js && pnpm lint:prettier",
+		"lintfix": "prettier --write --list-different . && pnpm lint:js --fix",
+		"postinstall": "nuxt prepare",
+		"preview": "nuxt preview",
+		"purge": "rm -rf ./docs ./node_modules ./nuxt ./pnpm-lock.yaml",
+		"upgrade": "pnpm run purge && pnpm i && pnpm run docs && pnpm run dev"
+	},
+	"dependencies": {
+		"@pinia/nuxt": "^0.5.1",
+		"pinia": "^2.1.7"
+	},
+	"devDependencies": {
+		"@nuxt/devtools": "latest",
+		"@nuxt/image": "^1.5.0",
+		"@nuxt/test-utils": "^3.12.0",
+		"@nuxtjs/eslint-config-typescript": "^12.1.0",
+		"@nuxtjs/eslint-module": "^4.1.0",
+		"@nuxtjs/google-fonts": "^3.2.0",
+		"@pinia/testing": "^0.1.3",
+		"@types/node": "^20.12.5",
+		"@types/uuid": "^9.0.8",
+		"@typescript-eslint/parser": "^7.5.0",
+		"@vue/language-plugin-pug": "^2.0.10",
+		"@vue/test-utils": "^2.4.5",
+		"eslint": "^9.0.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"eslint-plugin-vue": "^9.24.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
+		"nuxt": "^3.11.2",
+		"prettier": "^3.2.5",
+		"sass": "^1.74.1",
+		"sass-loader": "^14.1.1",
+		"sassdoc": "^2.7.4",
+		"typescript": "^5.4.4",
+		"uuid": "^9.0.1",
+		"vue": "^3.4.21",
+		"vue-router": "^4.3.0"
+	}
+}
