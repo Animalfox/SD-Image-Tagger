@@ -1,6 +1,7 @@
 import Image from "../../domain/entities/Image";
 import { Path } from "../../domain/entities/Path";
 import Dataset from "../../domain/repositories/Dataset";
+import fs from "node:fs";
 
 export default class FolderDataset implements Dataset {
     private path: Path;
@@ -21,6 +22,6 @@ export default class FolderDataset implements Dataset {
         throw new Error("Method not implemented.");
     }
     private isPathCorrect(path: Path): boolean {
-        throw new Error("Method not implemented.");
+        return fs.lstatSync(path).isDirectory();
     }
 }
