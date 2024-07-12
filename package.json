@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "sd-image-tagger",
-  "workspaces": [
-    "packages/*"
-  ]
+  "scripts": {
+    "nuxt": "pnpm --filter \"nuxt\" run dev"
+  }
 }
