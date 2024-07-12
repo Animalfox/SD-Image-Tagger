@@ -1,3 +1,4 @@
 {
-    "name": "@sd-image-tagger/core"
+    "name": "@sd-image-tagger/core",
+    "description": "Clean Architecture Core, this project contains all reusable entities and logic."
 }
