@@ -1,12 +1,12 @@
 import Image from "../../domain/entities/Image";
-import Dataset from "../../domain/repositories/Dataset";
+import ImageRepository from "../../domain/interfaces/ImageRepository";
 import fs from "node:fs";
 
 export const useValidExtension = (filename: string, exts: string[]) => {
   return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(filename);
 };
 
-export default class FolderDataset implements Dataset {
+export default class FolderImageRepository implements ImageRepository {
   private path: string;
   constructor(path: string) {
     this.path = path;
