@@ -30,7 +30,4 @@ export default class FolderImageRepository implements ImageRepository {
   DeleteImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
-  private isPathCorrect(path: string): boolean {
-    return fs.lstatSync(path).isDirectory();
-  }
 }
