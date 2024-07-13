@@ -1,6 +1,19 @@
+/**
+ * Represents an image with a path.
+ *
+ * Objects of the `Image` class are used as child elements of the `Dataset` class.
+ * They provide a summary of useful information about an image, including its path and tags.
+ * Currently, tags are not included in the image as the class is still under development.
+ */
 export default class Image {
-    private path: string;
-    constructor(path: string) {
-        this.path = path;
-    }
+  private path: string;
+
+  /**
+   * Creates an instance of the `Image` class.
+   *
+   * @param {string} path - The path to the image.
+   */
+  constructor(path: string) {
+    this.path = path;
+  }
 }
