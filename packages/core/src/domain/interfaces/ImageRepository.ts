@@ -1,4 +1,4 @@
-import Image from "../entities/Image";
+import Image from "@domain/entities/Image";
 
 /**
  * Interface for the Image repository, providing basic CRUD operations.

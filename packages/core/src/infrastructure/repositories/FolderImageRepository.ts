@@ -1,6 +1,6 @@
-import Image from "../../domain/entities/Image";
-import ImageRepository from "../../domain/interfaces/ImageRepository";
-import fs from "node:fs";
+import Image from "@domain/entities/Image";
+import ImageRepository from "@domain/interfaces/ImageRepository";
+import * as fs from "node:fs";
 
 export const useValidExtension = (filename: string, exts: string[]) => {
   return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(filename);
