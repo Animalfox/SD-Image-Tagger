@@ -8,9 +8,11 @@ export const useValidExtension = (filename: string, exts: string[]) => {
 
 export default class FolderImageRepository implements ImageRepository {
   private path: string;
+
   constructor(path: string) {
     this.path = path;
   }
+
   async GetImageById(): Promise<Array<Image>> {
     const images: Array<Image> = [];
     const isPng = (path: string) => {
@@ -21,12 +23,15 @@ export default class FolderImageRepository implements ImageRepository {
     pngArr.forEach(p => images.push(new Image(p)));
     return images;
   }
+
   CreateImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
+
   UpdateImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
+
   DeleteImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
