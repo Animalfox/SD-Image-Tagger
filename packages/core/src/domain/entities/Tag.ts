@@ -7,7 +7,7 @@
  * included in the Tag class as they are still under development.
  */
 export default class Tag {
-  private name: string;
+  public readonly name: string;
 
   /**
    * Creates an instance of the `Tag` class.
