@@ -1,5 +1,9 @@
 {
     "name": "@sd-image-tagger/core",
     "description": "Clean Architecture Core, this project contains all reusable entities and logic.",
-    "author": "Animalfox"
+    "author": "Animalfox",
+    "dependencies": {
+        "@types/better-sqlite3": "^7.6.11",
+        "better-sqlite3": "^11.1.2"
+    }
 }
