@@ -7,16 +7,16 @@ import Tag from "./Tag";
  * image. It provides methods to create, read, update, and delete tags.
  */
 export default class Image {
-  private _path: string;
+  public readonly name: string;
   private _tags: Array<Tag> = [];
 
   /**
    * Creates an instance of the `Image` class.
    *
-   * @param {string} path - The path to the image.
+   * @param {string} name - The name of the image.
    */
-  constructor(path: string) {
-    this._path = path;
+  constructor(name: string) {
+    this.name = name;
   }
 
   /**
