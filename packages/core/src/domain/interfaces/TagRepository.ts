@@ -13,7 +13,7 @@ export default interface TagRepository {
    * @returns {Promise<boolean>} - A promise that resolves to a boolean
    * indicating the success of the operation.
    */
-  createTag(): Promise<boolean>;
+  createTag(name: string): Promise<boolean>;
 
   /**
    * Reads a tag by its ID.
@@ -21,7 +21,7 @@ export default interface TagRepository {
    * @returns {Promise<Array<Tag>>} - A promise that resolves to an array of
    * `Tag` objects.
    */
-  getTagById(): Promise<Array<Tag>>;
+  getTag(name: string): Promise<Tag | null>;
 
   /**
    * Updates an existing tag.
@@ -29,7 +29,7 @@ export default interface TagRepository {
    * @returns {Promise<boolean>} - A promise that resolves to a boolean
    * indicating the success of the operation.
    */
-  updateTag(): Promise<boolean>;
+  updateTag(name: string): Promise<boolean>;
 
   /**
    * Deletes a tag.
@@ -37,5 +37,5 @@ export default interface TagRepository {
    * @returns {Promise<boolean>} - A promise that resolves to a boolean
    * indicating the success of the operation.
    */
-  deleteTag(): Promise<boolean>;
+  deleteTag(name: string): Promise<boolean>;
 }
