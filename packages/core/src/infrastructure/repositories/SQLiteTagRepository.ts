@@ -29,7 +29,24 @@ export default class SQLiteTagRepository implements TagRepository {
     }
   }
 
-  async getTag(name: string): Promise<Tag | null> {
+  async getAllTags(): Promise<Array<Tag>> {
+    const tags: Array<Tag> = [];
+    try {
+      const stmt = this.db.prepare(`SELECT * FROM tags`);
+      const info = stmt.get() as Tag[];
+      if (info) {
+        info.forEach(row => {
+          tags.push(new Tag(row.name));
+        });
+      }
+      return tags;
+    } catch (error) {
+      console.error("Error getting tag:", error);
+      return null;
+    }
+  }
+
+  async getTagByName(name: string): Promise<Tag | null> {
     try {
       const stmt = this.db.prepare(`SELECT * FROM tags WHERE name = ?`);
       const row = stmt.get(name) as Tag;
