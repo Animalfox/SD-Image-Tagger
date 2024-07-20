@@ -15,11 +15,11 @@ export default class FolderImageRepository implements ImageRepository {
     this.path = path;
   }
 
-  CreateImage(): Promise<boolean> {
+  createImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 
-  async GetImageById(): Promise<Array<Image>> {
+  async getImageById(): Promise<Array<Image>> {
     const images: Array<Image> = [];
     const isPng = (path: string) => {
       return new RegExp("(" + "png".replace(/\./g, "\\.") + ")$").test(path);
@@ -30,11 +30,11 @@ export default class FolderImageRepository implements ImageRepository {
     return images;
   }
 
-  UpdateImage(): Promise<boolean> {
+  updateImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 
-  DeleteImage(): Promise<boolean> {
+  deleteImage(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
 }
