@@ -16,12 +16,19 @@ export default interface ImageRepository {
   createImage(): Promise<boolean>;
 
   /**
-   * Reads an image by its ID.
+   * Reads an images.
    *
    * @returns {Promise<Array<Image>>} - A promise that resolves to an array of
    * `Image` objects.
    */
-  getImageById(): Promise<Array<Image>>;
+  getImages(): Promise<Array<Image>>;
+
+  /**
+   * Reads an image by its name.
+   *
+   * @returns {Promise<Image | null>} - A promise that resolves to `Image`.
+   */
+  getImageByName(name: string): Promise<Image | null>;
 
   /**
    * Updates an existing image.
@@ -37,5 +44,5 @@ export default interface ImageRepository {
    * @returns {Promise<boolean>} - A promise that resolves to a boolean
    * indicating the success of the operation.
    */
-  deleteImage(): Promise<boolean>;
+  deleteImage(image: Image): Promise<boolean>;
 }
