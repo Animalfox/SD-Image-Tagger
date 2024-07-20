@@ -13,6 +13,10 @@ export default class FolderImageRepository implements ImageRepository {
     this.path = path;
   }
 
+  CreateImage(): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
+
   async GetImageById(): Promise<Array<Image>> {
     const images: Array<Image> = [];
     const isPng = (path: string) => {
@@ -22,10 +26,6 @@ export default class FolderImageRepository implements ImageRepository {
     /** Because image interface is empty, nothing to add into images: empty elements */
     pngArr.forEach(p => images.push(new Image(p)));
     return images;
-  }
-
-  CreateImage(): Promise<boolean> {
-    throw new Error("Method not implemented.");
   }
 
   UpdateImage(): Promise<boolean> {
