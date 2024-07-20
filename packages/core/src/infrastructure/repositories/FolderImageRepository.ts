@@ -3,7 +3,9 @@ import ImageRepository from "@domain/interfaces/ImageRepository";
 import * as fs from "node:fs";
 
 export const useValidExtension = (filename: string, exts: string[]) => {
-  return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(filename);
+  return new RegExp("(" + exts.join("|").replace(/\./g, "\\.") + ")$").test(
+    filename
+  );
 };
 
 export default class FolderImageRepository implements ImageRepository {
