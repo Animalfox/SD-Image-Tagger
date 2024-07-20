@@ -3,8 +3,8 @@ import Tag from "./Tag";
 /**
  * Represents an image with a path and tags.
  *
- * The `Image` class is used to manage the path and tags associated with an image.
- * It provides methods to create, read, update, and delete tags.
+ * The `Image` class is used to manage the path and tags associated with an
+ * image. It provides methods to create, read, update, and delete tags.
  */
 export default class Image {
   private _path: string;
