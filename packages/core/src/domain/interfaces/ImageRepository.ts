@@ -7,18 +7,18 @@ import Image from "@domain/entities/Image";
  */
 export default interface ImageRepository {
   /**
-   * Retrieves an image by its ID.
-   *
-   * @returns {Promise<Array<Image>>} - A promise that resolves to an array of `Image` objects.
-   */
-  GetImageById(): Promise<Array<Image>>;
-
-  /**
    * Creates a new image.
    *
    * @returns {Promise<boolean>} - A promise that resolves to a boolean indicating the success of the operation.
    */
   CreateImage(): Promise<boolean>;
+
+  /**
+   * Read an image by its ID.
+   *
+   * @returns {Promise<Array<Image>>} - A promise that resolves to an array of `Image` objects.
+   */
+  GetImageById(): Promise<Array<Image>>;
 
   /**
    * Updates an existing image.
