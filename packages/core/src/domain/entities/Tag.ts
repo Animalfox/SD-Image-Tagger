@@ -7,14 +7,14 @@
  * included in the Tag class as they are still under development.
  */
 export default class Tag {
-    private name: string;
-  
-    /**
-     * Creates an instance of the `Tag` class.
-     *
-     * @param {string} name - The name of the tag.
-     */
-    constructor(name: string) {
-        this.name = name;
-    }
+  private name: string;
+
+  /**
+   * Creates an instance of the `Tag` class.
+   *
+   * @param {string} name - The name of the tag.
+   */
+  constructor(name: string) {
+    this.name = name;
+  }
 }

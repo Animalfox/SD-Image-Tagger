@@ -15,6 +15,6 @@ export default class Image {
    * @param {string} path - The path to the image.
    */
   constructor(path: string) {
-      this.path = path;
+    this.path = path;
   }
 }
